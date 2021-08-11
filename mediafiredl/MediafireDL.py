@@ -15,15 +15,14 @@ def GetFileLink(url: str):
         print(e)
         return e
 
-
-def GetFileSize(url):
+def GetFileSize(url: str):
     with requests.get(GetFileLink(url), stream=True) as r:
         return int(r.headers.get('content-length'))
 
 def AsMegabytes(bytes: int):
     return round(bytes/1024/1024, 2)
 
-def BulkDownload(urls):
+def BulkDownload(urls: list):
     total_files = len(urls)
     
     print("[Bulk downloading files]")
@@ -39,7 +38,6 @@ def BulkDownload(urls):
 
     for url in urls:
         Download(url)
-
 
 def Download(url: str, output = "", filename = ""):
     if not(filename): 
